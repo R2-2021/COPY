@@ -1,6 +1,6 @@
        01  :##:-DATEWEEK-AREA.
-      *    *** ID=A WEEK,DDセット
-      *    *** 
+      *    *** ID=A DATE2-YMD よりWEEK,DD2セット
+      *    *** ID=R NISSU よりDATE2-YMD,WEEKセット
            03  :##:-DATE2-ID     PIC  X(001) VALUE SPACE.
            03  :##:-DATE2-YMD.
              05  :##:-DATE2-YYYY PIC  9(004) VALUE ZERO.
@@ -10,7 +10,8 @@
                                  PIC  9(008).
 
       *    *** 以下サブルーチンでセット
-      *    *** WEEK 1:日曜,2:月曜,...,7:土曜
+      *    *** DATETIME とは、セット値（内容）違う
+      *    *** WEEK 1:月曜,...,6:土曜,7:日曜
            03  :##:-DATE2-WEEK   PIC  9(002) VALUE ZERO.
 
       *    *** 閏年計算して、月の最終日セット 1582年以降の年のみ算出
@@ -29,4 +30,11 @@
       *    *** 予備エリア、サイズ大きくした時はメインのリコンパイルが必要
       *    *** メインのエリア壊してしまう
       *    *** この長さで変更時は長さ同じにする
-           03  FILLER            PIC  X(100) VALUE SPACE.
+      *     03  FILLER            PIC  X(100) VALUE SPACE.
+
+      *    *** 週の曜日
+      *    *** NKは漢字で曜日セット
+      *    *** NAはANKで曜日セット
+           03  :##:-DATE2-WEEK-NK PIC  N(001) VALUE SPACE.
+           03  :##:-DATE2-WEEK-NA PIC  X(003) VALUE SPACE.
+           03  FILLER            PIC  X(095) VALUE SPACE.
